@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Asymptotic determinant of the discrete Laplacian on the hiper-cube}{2}
+\contentsline {subsection}{\numberline {2.1}A new analytic continuation of the Riemann zeta function}{2}
+\contentsline {subsection}{\numberline {2.2}The case $D=3$}{2}
+\contentsline {subsection}{\numberline {2.3}Introduccing a mass term}{2}
+\contentsline {subsection}{\numberline {2.4}About a general geometry}{2}
+\contentsline {section}{\numberline {3}Analityc continuation of Epstein zeta (not new material)}{2}
+\contentsline {subsection}{\numberline {3.1}Our old way (informe 3)}{2}
+\contentsline {section}{\numberline {4}Relation to other problems and future work}{2}
+\contentsline {section}{\numberline {5}Apendix: Euler-Maclauring sumation formula}{2}
+\contentsline {section}{\numberline {6}Apendix: The method of Duplantier and David}{2}
+\contentsline {subsection}{\numberline {6.1}Notable product}{2}
+\contentsline {subsection}{\numberline {6.2}Asymptotic product}{2}

@@ -1,0 +1,558 @@
+        \documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb,amsmath}
+\usepackage{graphicx}
+\usepackage{srcltx}
+\usepackage[usenames]{color}
+
+\newcommand\cotg{\mathrm{cotg}}
+\newcommand{\mat}[1]{\left(\begin{matrix}#1\end{matrix}\right)}
+\def\p{\partial}
+\def\DD{\mathcal{D}}
+\def\MM{\mathcal M}
+\def\Tr{\mathrm{Tr}}
+\def\Re{\mathrm{Re}\,}
+\def\RR{\mathbb R}
+\def\NN{\mathbb N}
+\def\ZZ{\mathbb Z}
+\def\prodz{\prod}
+\def\ep{\epsilon}
+
+\hoffset=-1 cm \voffset=-1 cm \textheight=15650pt \textwidth=650pt
+
+\title{TOPOLOGICAL APPLICATIONS OF FUNCTIONAL INTEGRATION\\ Informal report \#4\\ Von Berlin aus mit der Liebe}
+\author{Nicol{\'a}s Hatcher}
+\date{October 14th 2009}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+Dear firends, I start this fourth report in English for motivation. It has been more than a year since our last report, but looking backwards I would say he have solve some of the problems and there are some advances. In this report we have some publishable material for the first time. I am well aware of the fact that if I have not convinced you to join me in this adventure when I was there, it is going to be even more difficult from here. But perhaps with the sounds of new discoveries you will find this more interesting.
+The solution appeared right before Easter this year when we discovered the papers on the dimmer problem (see \cite{Kas} where everything get started, \cite{Fer} who first calculated the constant term and \cite{DupDav} for a nice review). We basically found our prefactor in two dimensions in a simplified setting. We reproduce this calculation in one of the appendices. Form May to September we have been fighting to do two things, one is to go to higher dimensions and the other is to go to more complicated forms than the hiper-cube. I think we can say we had a complete success in the first case and partial success in the second case. But more than that we have a new and beautifull way of doing this calculation. We begin with an introduction to the problem so that we do not need to bear in mind previous reports.
+\section{Introduction}
+We want to define the functional integral by a discretization process in a similar way Riemann's integrals are defined. Yes I know ``every body'' has tried it before. We know Quantum Field Theory is too hard. So probably we do not want to face \textit{that} problem. Instead I would like to define the functional integral on those cases we know how to define the result, that is on those cases physics is not involved. That includes topological quantum field theories and I am specially interested in Schwarz-Witten description of the annalytical torsion and Jones polinomials (papers \cite{Sch} and \cite{Witten}). These papers concern the evaluation of the functional integral:
+\begin{gather}
+S=\frac{k}{8\pi}\int_\MM \Tr\left( A\wedge d A+\frac{3}{2}A\wedge A\wedge A\right)\\
+\int \DD A e^{iS(A)}
+\end{gather}
+where $A$ is a Lie-Algebra valued connection. This is the functional integration of the Chern-Simmons action. Our aim is to be able to give mathematical meaning to that object by making smaller and smaller triangulations on $\MM$. This is probably not the time to pursue this integral any better. I just mention them because I think we are approaching a general formulation.\\
+By now all we can do is define functional integrals of the type
+\begin{gather}
+S=\int_U \phi\nabla^2\phi+m^2\phi^2\\
+\int_{\phi(\p U)=0} e^{-S}
+\end{gather}
+Where $U\in \mathbb R^D$ is compact. Our fight is to go from a formal definition of these integrals to the Schwarz-Witten integrals above mentioned. It is probably ot easy. For example if one takes the simplest Chern-Siommons action, hat is a $U(1)$ group the result of the functional integration is the analitical Torsion of Ray and Singer\cite{RaySing} but if we take the discrete approach we will arrive to the discrete torsion of Reidemeister. This equivalence was my starting point.
+\section{Asymptotic determinant of the discrete Laplacian on the hiper-cube}
+In this section we will compute the asymptotic value of the discrete Laplacian in a $D$ dimensional hiper-cube. The proof rest on some minor unproven hypothesis.\\
+For the moment we have been forced to forget about the triangulation we were doing in \cite{informe3}, mainly because we do not know how to do the calculations, expecially in higher dimensions. But I do think that is a minor problem, we will see. In other words instead of pursuing my beloved finite element method, we shall content ourselves with the finite diference method. Let me explain this subtle but important point. By finite diferences I mean that I compute the functional integration by discretizing the Lagrangian, that is substitute
+\begin{gather}
+\frac{d}{dx}\phi\rightarrow \frac{\phi_{n+1}-\phi_n}{h}
+\end{gather}
+and things like that. This is finite differences and is generally done in Lattice Quantum Field Theory\\
+By finite elements I mean that I integrate over all functions that are piecewise linear. That is what is donne in \cite{informe3}.\\
+The first approach is mathematically simpler an probably equivalent to the second when the space topology is trivial. The second approach is more profound. It needs to have not only a discretized version of the manifold but even a triangulation of the manifold. To use finite differences we need a lattice to use finite elements we need a triangulation. To understand geometry we need a triangulation ergo we need finite elements to define functional integrals.\\
+I can not do it so I abandon this idea for the time being. We use finite diferences from now on. Too bad.\\
+So imagine we have a $D$ dimensional hiper-cube of sides $a_1,...,a_D$ and we cut each side in $N_1,...,N_D$ parts. We do not need that $\frac{a_1}{N_1}=\frac{a_2}{N_2}=...=\frac{a_D}{N_D}$. So we need fields defined only at the vertex points $\phi_{n_1...n_D}$ where $n_i=0...N_i$. Everytime any $n_i=0,N_i$ the value of $\phi$ is $0$. The eigenvalues of the discrete Laplacian are proportional to
+\begin{gather}
+\lambda_{n_1..n_D}=\sum_{i=1}^D\frac{4N_i^2}{a_i^2}\sin^2\left(\frac{n_i\pi}{2N_i}\right)
+\end{gather}
+The problem is now to estimate the product:
+\begin{gather}
+\prod_{n_1,...,n_D}^{N_1...N_D}\left(\frac{4N_1^2}{a_1^2}\sin^2\left(\frac{n_1\pi}{2N_1}\right)+...
++\frac{4N_D^2}{a_D^2}\sin^2\left(\frac{n_D\pi}{2N_D}\right)\right)
+\end{gather}
+When all the quotients $\frac{a_i}{N_i}\ll 1$. Since I want to follow a more or less pedagogical route and more importantly I want you to follow the main ideas I will do it first in $D=1$ and then we shall see what happens in $D=3$ that is general enough.
+\subsection{A new analytic continuation of the Riemann zeta function}
+First let me state the hypothesis.\\
+An analytic prolongation to the whole complex plane for the Riemann zeta function is provided by the formula:
+\begin{gather}
+\zeta(z)=\lim_{N\rightarrow\infty}\left(\frac{\pi}{2N}\right)^z\left[\sum_n^{N-1} \sin^{-z}\left(\frac{n\pi}{2N}\right)-\frac{N\Gamma\left(\frac{1-z}{2}\right)}{\sqrt{\pi}\Gamma\left(1-\frac{z}{2}\right)}+\frac{1}{2}\right]
+\end{gather}
+
+This is compleately new material and we could make a paper based solely on this prolongation. This is a wonderfull formula. It is plenty of surprises as we shall encounter. First of all let me explain where the formula comes from. It stems from some observations of Müller regarding his proof of the equality between the analytic and the R-torsion \cite{Muller}, that in turn are based on studies by Dodziuk and Patodi \cite{DodPat}.Expecially see theorem 8.44 of Müller's paper.
+
+We start by a using the Euler-Maclaurin formula (see Apendix) to approximate the heat-kernel of the discrete Laplacian. Surprinsingly enough the Euler-Maclaurin formula only has three terms:
+\begin{gather}
+\theta_N(a,t)=\sum_{n=1}^{N-1}e^{-t\frac{4N^2}{a^2}\sin^2\left(\frac{n\pi}{2N}\right)}\sim \frac{2N}{\pi}\int_0^{\pi/2}e^{-t\frac{4N^2}{a^2}\sin^2 x}dx-\frac{1}{2}\left(1+e^{-t\frac{4N^2}{a^2}}\right)
+\end{gather}
+Whe shall define
+\begin{gather}
+T_N(a,t)=\frac{2N}{\pi}\int_0^{\pi/2}e^{-t\frac{4N^2}{a^2}\sin^2 x}dx-\frac{1}{2}\left(1+e^{-t\frac{4N^2}{a^2}}\right)
+\end{gather}
+Note that the \textit{zeta} function is a transform of the heat kernel. This is due to the formula
+\begin{gather}
+\frac{1}{\Gamma(z)}\int_0^\infty\frac{t^z}{t}e^{-t\lambda}dt=(\lambda)^{-z}
+\end{gather}
+The functions $\theta_N(a,t)$ and $T_N(a,t)$ can not be equal for the simple reason that at $t=+\infty$ $\theta_N(a,t)=0$ and $T_N(a,t)=-1/2$. So we merelly say that if we remove the $-1/2$ we have the asymptotic part. We define therefore
+\begin{gather}
+A_N(a,t)=\frac{2N}{\pi}\int_0^{\pi/2}e^{-t\frac{4N^2}{a^2}\sin^2 x}dx-\frac{1}{2}e^{-t\frac{4N^2}{a^2}}
+\end{gather}
+Now, with an eye to Müller's theorem, we simply set the transform of $A_N(a,t)$ a parametrix for $\theta_N(a,t)$:
+\begin{gather}
+\sum_{n=1}^\infty\left(\frac{n\pi}{a}\right)^{-2z}=\lim_{N\rightarrow} \left[\frac{1}{\Gamma(z)}\int_0^\infty t^z(\theta_N(a,t)-A_N(a,t))\frac{dt}{t}\right]
+\end{gather}
+Note that if $\Re z<1$ then:
+\begin{gather}
+\int_0^{\pi/2}\frac{dx}{\sin^z x}=\frac{\sqrt{\pi}\Gamma\left(\frac{-z+1}{2}\right)}{2\Gamma\left(\frac{-z}{2}+1\right)}
+\end{gather}
+Now with have the formula of our hypothesis.
+
+Lets make some games to gain some faith. First we compute $\zeta(0)=-1/2$ as it should. Let us proof that $\zeta(-2k)=0$ with $k\in\NN$. It is based on the amussing formula (I do not know if it is known or not):
+\begin{gather}
+\sum_{n=1}^{N-1} \sin^{2k}\left(\frac{n\pi}{2N}\right)=\frac{N\Gamma(k+1/2)}{\sqrt{\pi}k!}-\frac{1}{2}
+\end{gather}
+valid only if $N>k/2$ and $k$ a positive integeer. This formula gives us the trivial zeros of the zeta function $\zeta(-2k)=0$. I have not a closed formula for the odd integeers but I have a couple:
+\begin{gather}
+\sum_{n=1}^{N-1} \sin\left(\frac{n\pi}{2N}\right)=\frac{1}{2}\cotg\left(\frac{\pi}{4N}\right)-\frac{1}{2}\\
+\sum_{n=1}^{N-1} \sin^3\left(\frac{n\pi}{2N}\right)=\frac{-1}{8}\cotg\left(\frac{3\pi}{4N}\right)+\frac{3}{8}\cotg\left(\frac{\pi}{4N}\right)-\frac{1}{2}
+\end{gather}
+It is now straightforward to see that it gives us $\zeta(-1)=-1/12$ and $\zeta(-3)=-1/120)$. But there is a way to understand what happens at $z=-(2k+1)$. We apply Euler-Maclauring to $f(x)=\sin^{2k+1}(x\pi/(2N))$. The first derivetive that is not zero either at $x=0$ or $N$ is the $2k+1$ derivative at $x=0$, and we have $f^{(2k+1}(0)=(2k+1)!(\pi/(2N))^{2k+1}$:
+\begin{gather}
+\sum_{n=1}^{N-1} \sin^{2k+1}\left(\frac{n\pi}{2N}\right)\sim \int_0^N \sin^{2k+1}\left(\frac{x\pi}{2N}\right) dx-\frac{1}{2}-\frac{B_{2k+2}}{2k+2}
+\end{gather}
+So we obtain:
+\begin{gather}
+\zeta(-2k-1)=-\frac{B_{2k+2}}{2k+2}
+\end{gather}
+which is true.\\
+Another couple of interesting formulas are:
+\begin{gather}
+\sum_{n=1}^{N-1} \sin^{-2}\left(\frac{n\pi}{2N}\right)=\frac{2}{3}\left(N^2-1\right)\\
+\sum_{n=1}^{N-1} \sin^{-4}\left(\frac{n\pi}{2N}\right)=\frac{8}{45}N^4+\frac{4}{9}N^2-\frac{28}{45}\\
+...
+\end{gather}
+They are sufficient to proof that $\zeta(2)=\pi^2/6$ and $\zeta(4)=\pi^4/90$.\\
+I really think we could push this formulas to obtain a new proof of the functional equation
+\begin{gather}
+\zeta(z)=2^z\pi^{z-1}\sin\left(\frac{\pi z}{2}\right)\Gamma(1-z)\zeta(1-z)
+\end{gather}
+but I do not know how to do it by now.\\
+Note that if $\Re z>1$ we can drop the other terms.
+
+Now, the real reason why this analytic prolongation is important for us is because it relates $\zeta'(0)$ with the log or our determinant:
+\begin{gather}
+\zeta'(0)\sim \sum_{n=1}^{N-1}\log\left[\frac{4N^2}{a^2}\sin^2\left(\frac{\pi n}{2N}\right)\right]-\frac{2N}{\pi}\int_0^{\pi/1}\log ( \sin^2 x )dx+\log\left(\frac{4N^2}{a^2}\right)
+\end{gather}
+Using the fact that:
+\begin{gather}
+\int_0^{\pi/2}\log(2\sin x)dx=0
+\end{gather}
+We find:
+\begin{gather}
+\zeta'_N(0)\sim \zeta_a'(0)-2N\log\left(\frac{N}{a}\right)+\log\left(\frac{2N}{a}\right)\label{eq:fundamental1D}
+\end{gather}
+Where we use:
+\begin{gather}
+\zeta_N(z)=\sum_{n=1}^{N-1}\left(\frac{4N^2}{a^2}\sin^2\left(\frac{n\pi}{2N}\right)\right)^{-2z}\\
+\zeta_a(z)=\sum_{n=1}^\infty \left(\frac{n\pi}{a}\right)^{-2z}=\left(\frac{a}{\pi}\right)\zeta(2z)
+\end{gather}
+If we remember that $\zeta(0)=-1/2$ and $\zeta'(0)=-1/2 \log(2\pi)$ we find
+\begin{gather}
+\zeta'_a(0)=\log\left(\frac{a}{2}\right)
+\end{gather}
+From there we find
+\begin{gather}
+\sum_{n=1}^{N-1}\log\left(\frac{4N^2}{a^2}\sin^2\left(\frac{n\pi}{2N}\right)\right)\sim 2N\log \frac{N}{a}-\log\frac{N}{a^2}
+\end{gather}
+This result is not only true but also exact!.\\
+Remember our previous result:
+\begin{gather}
+\sum_{n=1}^{N-1}\log\left(4\sin^2\left(\frac{n\pi}{2N}\right)\right)=\log N
+\end{gather}
+So far, so good.
+Our aim is to present a formula similar to (\ref{eq:fundamental1D}) in higher dimensions. Instead of working directly in general $D$ dimensions we are going to do the work in $D=3$ dimensions. A general dimension is not more complicated only clumsier.
+\subsection{The case $D=3$}
+We are go through exactly the same steps than in the one dimensional case. We first find an asymptotic form for the discretized heat kernel. We are lucky, the sum factorices
+\begin{gather}
+\theta_{N_1,N_2,N_3}(t)=\sum_{n_1,n_2,n_3=1}^{N_1-1,N_2-1,N_3-1}e^{-t\left(\frac{4N_1^2}{a_1^2}\sin^2\left(\frac{n_1\pi}{2N_1}\right)+ \frac{4N_2^2}{a_2^2}\sin^2\left(\frac{n_2\pi}{2N_2}\right)
++\frac{4N_3^2}{a_3^2}\sin^2\left(\frac{n_3\pi}{2N_3}\right)\right)}\sim\nonumber\\
+\left[\frac{2N_1}{\pi}\int_0^{\pi/2}e^{-t\frac{4N_1^2}{a_1^2}\sin^2 x}dx-\frac{1}{2}\left(1+e^{-t\frac{4N_1^2}{a_1^2}}\right)\right]+\nonumber\\
+\left[\frac{2N_2}{\pi}\int_0^{\pi/2}e^{-t\frac{4N_2^2}{a_2^2}\sin^2 x}dx-\frac{1}{2}\left(1+e^{-t\frac{4N_2^2}{a_2^2}}\right)\right]
+\nonumber\\
+\left[\frac{2N_3}{\pi}\int_0^{\pi/2}e^{-t\frac{4N_3^2}{a_3^2}\sin^2 x}dx-\frac{1}{2}\left(1+e^{-t\frac{4N_3^2}{a_3^2}}\right)\right]
+\end{gather}
+Again I do not know the error term. The constant term this time is $\frac{-1}{8}$ and we eliminate it. In the befefit of clearness we shall take $a_1/N_1=a_2/N_2=a_3/N_3=\ep$, but this is not necessary. We have three terms. One that is proportional to $a_1a_2a_3$, another that is proportional to $a_1a_2+a_2a_3+a_1a_3$ and the last one $a_1+a_2+a_3$.
+\begin{gather}
+A_{\ep}(t)=\frac{8}{\pi^3}\frac{a_1a_2a_3}{\ep^3}\int_0^{\pi/2} e^{-\frac{4t}{\ep^2}(\sin^2 x+\sin^2 y+\sin^2 s)}dxdyds+\nonumber \\ \frac{-2(a_1a_2+a_2a_3+a_1a_3)}{(\pi\ep)^2}\left(1+e^{-\frac{4t}{\ep^2}}\right)\int_0^{\pi/2}e^{-\frac{4t}{\ep^2}(\sin^2 x+\sin^2 y)}dxdy+\nonumber\\
+\frac{a_1+a_2+a_3}{2\pi\ep}\left(1+e^{-\frac{4t}{\ep^2}}\right)^2\int_0^{\pi/2}e^{-\frac{4t}{\ep^2}\sin^2 x}dx- \frac{1}{8}\left(1+e^{-\frac{4t}{\ep^2}}\right)^3+\frac{1}{8}
+\end{gather}
+Now our hypothesis is:
+\begin{gather}
+\zeta_{a_1a_2a_3}(z)=\lim_{\ep\rightarrow 0}\left[ \zeta_\ep (z)-\frac{1}{\Gamma(z)}\int_0^\infty t^z A_\ep (t) \frac{dt}{t}\right]\\
+\end{gather}
+where we define:
+\begin{gather}
+\zeta_{a_1a_2a_3}(z)=\sum_{n_1,n_2,n_3=1}^\infty\left(\frac{n_1^2\pi^2}{a_1^2}+\frac{n_2^2\pi^2}{a_2^2}+\frac{n_3^2\pi^2}{a_3^2}\right)^{-z} \\
+\zeta_\ep(z)=\frac{\ep^{2z}}{2^{2z}}\sum_{n_1,n_2,n_3=1}^{N_1-1,N_2-1,N_3-1}\left(\sin^2\left(\frac{n_1\pi}{2N_1}\right)+ \sin^2\left(\frac{n_2\pi}{2N_2}\right)+\sin^2\left(\frac{n_3\pi}{2N_3}\right)\right)^{-z}
+\end{gather}
+Now we compute the transformation of $A_\ep(t)$
+\begin{gather}
+\frac{1}{\Gamma(z)}\int_0^\infty t^z A_\ep (t) \frac{dt}{t}=
+\frac{8}{\pi^3}\frac{a_1a_2a_3}{\ep^3}\ep^{2z}\int_0^{\pi/2}(4\sin^2 x+4\sin^2 y+4\sin^2 s)^{-z}dxdyds+\nonumber \\ \frac{-2(a_1a_2+a_2a_3+a_1a_3)}{(\pi\ep)^2}\ep^{2z}\int_0^{\pi/2}\left[(4\sin^2 x+4\sin^2 y)^{-z}+(4\sin^2 x+4\sin^2 y+4)^{-z}\right]dxdy\nonumber\\
++\frac{a_1+a_2+a_3}{2\pi\ep}\ep^{2z}\int_0^{\pi/2}\left[(4\sin^2 x)^{-z}+2(4\sin^2 x+4)^{-z}+(4\sin^2 x+8)^{-z}\right]dx\nonumber\\
+-\frac{1}{8}\left(\frac{4}{\ep^2}\right)^{-3z}-\frac{3}{8}\left(\frac{4}{\ep^2}\right)^{-2z}-
+\frac{3}{8}\left(\frac{4}{\ep^2}\right)^{-z}
+\end{gather}
+Now we can take derivatives with respect to $z$ and discover our determinant:
+\begin{gather}
+\zeta_\ep'(0)\sim\zeta_{a_1a_2a_3}'(0)-\frac{8}{\pi^3}\frac{a_1a_2a_3}{\ep^3}\int_0^{\pi/2}\log\left[\frac{4}{\ep^2}(\sin^2 x+\sin^2 y+\sin^2 s)\right]dxdyds\nonumber\\
++\frac{2(a_1a_2+a_2a_3+a_1a_3)}{(\pi\ep)^2}\int_0^{\pi/2}\log\left[\frac{16}{\ep^4}(\sin^2 x+\sin^2 y)(\sin^2 x+\sin^2 y+1)\right]dxdy-\nonumber\\
+\frac{a_1+a_2+a_3}{2\pi\ep}\int_0^{\pi/2}\log\left[\frac{256}{\ep^8}\sin^2 x(\sin^2x+1)^2(\sin^2x+2)\right]dx
++3\log\left[\frac{2}{\ep}\right]
+%\nonumber\\ \left(\frac{a_1a_2a_3}{\ep^3}-\frac{(a_1a_2+a_2a_3+a_1a_3)}{2\ep^2}+\frac{a_1+a_2+a_3}{2\ep}\right)\log\ep
+\end{gather}
+Since this is our main result I am going to write it in a more compact form.\\ \medskip
+\fbox{\begin{minipage}{15cm}
+\begin{gather}
+\log\left[\prod_{n_1,n_2,n_3}^{N_1-1,N_2-1,N_3-3}
+\left(4\sin^2\left(\frac{n_1\pi}{2N_1}\right)+4\sin^2\left(\frac{n_2\pi}{2N_2}\right)
++4\sin^2\left(\frac{n_3\pi}{2N_3}\right)\right)\right]=\nonumber\\
+\frac{G_3 V}{\ep^3}-\frac{G_2 A}{\ep^2}+\frac{G_1 L}{\ep}+5\log\ep-3\log 2+\zeta_{a_1a_2a_3}'(0)+O(\ep)\\
+V=a_1a_2a_3,\qquad A=2(a_1a_2+a_2a_3+a_1a_3),\qquad L=a_1+a_2+a_3
+\end{gather}
+\end{minipage}
+}\\
+This is for us our final and most important formula. The constants are given by:
+\begin{gather}
+G_3=\frac{8}{\pi^3}\int_0^{\pi/2}\log(4\sin^2 x+4\sin^2 y+4\sin^2 s)dxdyds\\
+G_2=\frac{1}{\pi^2}\int_0^{\pi/2}\log\left[16(\sin^2 x+\sin^2 y)(\sin^2 x+\sin^2 y+1)\right]dxdy\\
+G_1=\frac{1}{2\pi}\int_0^{\pi/2}\log\left[64(\sin^2x+1)^2(\sin^2x+2)\right]dx
+\end{gather}
+\subsection{Introduccing a mass term}
+In this formalism it is easy to introduce a mass term and carry out the calculation. We do it first in one dimension. The discretized heat kernet is:
+\begin{gather}
+\theta_\ep(t,a,m)=\sum_{n=1}^{N-1} e^{-\frac{4t}{\ep^2}\sin^2\left(\frac{n\pi}{2N}\right)-tm^2}
+\end{gather}
+Whose asymptotic form is simply the former asymptotic expansion multiplied by $e^{-tm^2}$. The only change is that in all the integrals where there is a logarithm we have to add $+m^2$ inside the log. I have not studied the issue any further. He have to.
+\subsection{About a general geometry}
+Up to now we have only considered the hyper-cube. In this section we atack the problem of calculating the asymptotic determinant of the discrete Laplacian of a general form. Pephaps a starting point could be Kac's paper (\cite{Kac}). My general hypothesis here is that the answer is \textit{the shame} that in the hypercube case. In two dimensions  this means we subtitude $a_1a_2$ by the area and $a_1+a_2$ by the lenght. In three and upper dimensions it is more obscure but I should be tempted to think that they are related to the heat invariants. In three dimensions, for example, it is not clear what we mean by $a_1+a_2+a_3$. I would sugest that we interpret that as the integrated mean curvature of the border. That is just my first shoot. The idea came from formula (6) in MacKEan and Singer's paper \cite{MacSin}. Now let me explain the rationale.\\
+I think I can proof that the first term is always
+\begin{gather}
+\frac{V}{\ep^D}\frac{2^D}{\pi^D}\int dx^D\log\left(\sin^2 x_1+...+\sin^2 x_D\right)
+\end{gather}
+Lets think in two dimensions for a moment where ideas are easier to wrasp. Kac's fundamental idea is to approximate the heat-kernet and not just the trace of the heat-kernel. It is a probability and we can bound this probability beteewn the probability of two squares. One small square inside the figure and one bigger outside. Uppon integration the bulk term in both probabilities is the area term. I think I can do it better but I will leave that for the 5th report. I have no idea how to go to the subleading terms.\\
+There is a work in this direction that seems to be very deep. Richard Kenyon \cite{Key} says he has prooven it in two dimensions. Although I do think is correct, his proof is quite involved and Jhon and I have not been able to reproduce it after a few weeks. I think other approaches are far more convenient.
+\section{Analityc continuation of Epstein zeta (not new material)}
+The study of Epstein zeta functions carries us all the way to some of the most deep and misterious problems in all mathematics. I have tried to avoid swimming those waters unless we are compelled to it.\\
+Well in this report we claim to have an analityc continuation for some Epstein zeta functions. It would be good to know if we are on the right track or not.\\
+Let $Q$ be a cuadratic form. (the following lines are taken from \cite{DukIma}, but is standard knowledge) We then attach a zeta function to it:
+\begin{gather}
+\zeta_q(z)=\sum_{m\in\ZZ^N-{0}}\frac{1}{(Q(m))^z}\\
+Q(m)=\sum_{i,j=1}^D q_{ij}m_im_j
+\end{gather}
+The series is convergent if $\RR z>\frac{D}{2}$ and has a meromorphic extension to the whole complex plane with a simple pole $z=\frac{D}{2}$ with residue:
+\begin{gather}
+\sqrt{\frac{\pi^D}{|Q|}}\frac{1}{\Gamma\left(\frac{D}{2}\right)}
+\end{gather}
+where $|Q|=\det Q$ and satisfies the functional equation
+\begin{gather}
+\pi^{-z}\Gamma(z)\zeta_{Q^{-1}}(z)=\sqrt{|Q|}\pi^{z-D/2}\Gamma\left(\frac{D}{2}-z\right)\zeta_Q\left(\frac{D}{2}-z\right)
+\end{gather}
+If $D\geq 2$ then $Q$ can be written uniquely as
+\begin{gather}
+Q=\mat{1 & 0\\ -^tx & 1}\mat{y^{-1} & 0\\ 0 & Y}\mat{1 & -x\\ 0 & 1}
+\end{gather}
+with $y\in\RR^+$, $x\in\RR^{D-1}$ and $Y$ a $(D-1)\times (D-1)$ matrix. For $m\in\RR^{D-1}$ we write
+\begin{gather}
+Q\{m\}=m\cdot x+i\sqrt{yY(m)}
+\end{gather}
+The value of the derivative of the zeta function and zero is given by:
+\begin{gather}
+\zeta'_Q(0)=-2\pi\sqrt{y}\zeta_Y\left(-\frac{1}{2}\right)- \log\left|(2\pi)^2y{\prod_{m\in\ZZ^{D-1}}}^+\left(1-e^{2\pi iQ\{m\}}\right)^4\right|
+\end{gather}
+where the $+$ means we need only $m$ or $-m$ but not both.
+\subsection{Our old way (informe 3)}
+We did compute in informe 3 this quantity for $D=2$, but there was a mistake. The result there depend solely on $a/b$, there was a kind of \textit{conformal invariance}. This is false. Here we repeat the calculation without the mistake.\\
+The ieenvalues of the Laplacian $-\nabla^2$ in a square of sides $a\times b$ are given by $\lambda_{n,m}=\left(\frac{\pi n}{a}\right)^2+\left(\frac{\pi m}{b}\right)^2$. So our zeta function is
+\begin{gather}
+\zeta_{-\nabla^2}(z)=\sum_{n,m=1}^\infty \lambda_{n,m}^{-z}
+\end{gather}
+Theorem:
+\begin{gather*}
+\zeta'_{-\nabla^2}(0)=2^{-1/2}(ab)^{-1/4}\left(\frac{b}{a}\right)^{1/4}\eta\left(i\frac{b}{a}\right)
+\end{gather*}
+Where $\eta(\tau)=e^{i\pi\tau/12}\prod_{n=1}^{\infty}(1-e^{2i\pi n\tau})$ is Dedekind's $\eta$ function.\\
+Proof:\\
+The first step is to write this zeta function in terms of Eisenstein series and Riemann zeta function.
+\begin{gather}
+\zeta_{-\nabla^2}(z)=\pi^{-2z}\sum_{n,m=1}^\infty \frac{1}{\left(\frac{n^2}{a^2}+\frac{m^2}{b^2}\right)^z}=\frac{b^{2z}}{\pi^{2z}}\sum_{n,m=1}^\infty\frac{1}{\left(m^2+\frac{b^2}{a^2}n^2\right)^z}=\frac{b^{2z}}{4\pi^{2z}}\sum_{n,m\neq 1}^\infty\frac{1}{\left(m^2+\frac{b^2}{a^2}n^2\right)^z} \nonumber\\
+=\frac{b^{z}a^z}{4\pi^{2z}}\left(\sum_{(n,m)\neq (0,0)}^\infty\frac{(b/a)^z}{\left(m^2+\frac{b^2}{a^2}n^2\right)^z}-2\left(\frac{a}{b}\right)^z\sum_{n=1}^{\infty}\frac{1}{n^{2z}}-2\left(\frac{b}{a}\right)^z\sum_{m=1}^{\infty}\frac{1}{m^{2z}}\right)
+\end{gather}
+Eisenstein series are defined by ($\tau=\tau_1+i\tau_2$):
+\begin{gather}
+E(\tau,z)=\sum_{(n,m)\neq (0,0)}\frac{\tau_2^z}{|m+\tau n|^{2z}}
+\end{gather}
+So, our zeta function is
+\begin{gather}
+\zeta_{-\nabla^2}(z)=\frac{b^{z}a^z}{4\pi^{2z}}\left(E(ib/a,z)-2\left(\left(\frac{a}{b}\right)^z+\left(\frac{b}{a}\right)^z\right)\zeta(2z)\right)
+\end{gather}
+Now we use the following facts
+\begin{gather}
+\zeta(0)=\frac{-1}{2}\qquad \zeta'(0)=\frac{-1}{2}\log(2\pi) \\
+E(\tau,0)=-1\qquad E_z(\tau,0)=-2\log(2\pi)-2\log(\sqrt{\tau_2}|\eta(\tau)|^2)
+\end{gather}
+Taking a derivative we obtain
+\begin{gather}
+\zeta'_{-\nabla^2}(0)=\frac{1}{4}\log\left(\frac{ab}{\pi^2}\right)\left(E(ib/a,0)+2\right)+\nonumber\\
+\frac{1}{4}\left(E_z(i b/a,0)+2\log\left(\frac{a}{b}\right)+2\log\left(\frac{b}{a}\right)+4\log(2\pi)\right)=\nonumber \\
+\frac{1}{4}\log\left(\frac{ab}{\pi^2}\right)-\frac{1}{2}\log\left(\sqrt{\frac{b}{a}}\left|\eta\left(i\frac{b}{a}\right)\right|^2\right)+\frac{1}{2}\log(2\pi)
+\end{gather}
+The regularized determinant is finally:
+\begin{gather}
+\det (-\nabla^2)=2^{-1/2}(ab)^{1/4}\left(\frac{b}{a}\right)^{1/4}\eta\left(i\frac{b}{a}\right)=2^{-1/2}b^{1/2}\eta\left(i\frac{b}{a}\right)=2^{-1/2}a^{1/2}\eta\left(i\frac{a}{b}\right)
+\end{gather}
+notice that $\eta(it)$ is real if $t$ is real.
+I would like to deduce this formula in a \textit{different way}.\\
+Now we compute
+\begin{gather}
+\prodz_{n=1}^\infty\prodz_{m=1}^\infty\left(\frac{n^2\pi^2}{a^2}+\frac{m^2\pi^2}{b^2}\right)=
+\prodz_{n=1}^\infty\prodz_{m=1}^\infty\left[\left(1+\frac{n^2 b^2}{m^2 a^2}\right)\frac{m^2\pi^2}{b^2}\right]= \nonumber\\
+\prodz_{n=1}^\infty\left[\prodz_{m=1}^\infty\frac{m^2\pi^2}{b^2}\prodz_{m=1}^\infty\left(1+\frac{n^2 b^2}{m^2 a^2}\right)\right]= \prodz_{n=1}^\infty\left[\frac{b}{\pi}2\pi\frac{\sinh\left(\frac{\pi n b}{a}\right)}{(\pi n b/a)}\right]\nonumber \\
+=\prodz_{n=1}^\infty\left[\frac{a}{n\pi}e^{\pi nb/a}\left(1-e^{-2\pi nb/a}\right)\right]=\prodz_{n=1}^\infty\frac{a}{n\pi}\prodz_{n=1}^\infty e^{\pi nb/a}\prodz_{n=1}^\infty \left(1-e^{-2\pi nb/a}\right)=\nonumber \\
+\sqrt{\frac{\pi}{a}}\frac{1}{\sqrt{2\pi}}e^{-\pi b/(12 a)}\prodz_{n=1}^\infty \left(1-e^{-2\pi nb/a}\right)
+\end{gather}
+Where we have made use of the formula:
+\begin{gather}
+\sinh x=x\prod_{n=1}^\infty\left(1+\frac{x^2}{n^2\pi^2}\right)
+\end{gather}
+That is
+\begin{gather}
+\prodz_{n=1}^\infty\prodz_{m=1}^\infty\left(\frac{n^2\pi^2}{a^2}+\frac{m^2\pi^2}{b^2}\right)=\frac{1}{\sqrt{2a}}e^{-\pi b/(12 a)}\prodz_{n=1}^\infty \left(1-e^{-2\pi nb/a}\right)=\nonumber\\
+\frac{1}{\sqrt{2b}}e^{-\pi a/(12 b)}\prodz_{n=1}^\infty \left(1-e^{-2\pi na/b}\right)
+\end{gather}
+The last equality is due to the fact that the result is symmetric uppon changing $a\leftrightarrow b$ and implies the functional equation for Dedekind's eta function.
+\section{Relation to other problems and future work}
+There are several problems that are intimately related to our problem.\\
+It is an old theorem by Kirchoff that the determinant we are trying to calculate gives the number of spanning trees of our graph. A spanning tree is a tree that has all the vertices of the graph. In turn spanning trees are closely related to loop-erased random walks (LERW). That is a random walk in which all loops have been erased. In this theory is important to compute the so called scaling limmit $\gamma$. Let $r$ be the distance fro the origin of a LERW and $L(r)$ the number of steps needed. Then $L(r)\sim Cr^\gamma$. In dimensions $>4$ it turn out that $\gamma=1$ (Browmian motion) in four dimensions it recieves a logaritmic correction as ususal. In dimension $\gamma=5/4$ and in $D=3$ people suspect is something like $1.6$. It is conceivable that we can say something in this respect.\\
+On the other hand Temperley shown that there is close relation between spanning trees and domino tillings in $D=2$, and from the study of those is that this problem arose \cite{Kas}. ¿Is there anything similar in more dimensions?.\\
+Many of this things are sumarized in \cite{DupDav}.\\
+For some formulas, bibliography and inspiration on spanning trees \cite{Lyo}.\\
+The $q$-state Potts model might have some relation with our work. I would like to recall a papers by Alan Sokal ("Transgressing the Boundaries: Towards a Transformative Hermeneutics of Quantum Gravity", remember?), Jesus Salas (from Zaragoza) and Jacobsen.\cite{JacSalSok}.\\
+The first thing we have to do is to proof that everything contained in this report is correct. The next stop woyld be to have a proof for a general form in $D$-dimensions. Then we should look at a general manifold. Let $M$ be a closed (without border?) $D$-dimensional differentiable manifold, can we define
+\begin{gather}
+\int\DD \phi e^{-\int_M \nabla^2\phi}
+\end{gather}
+by a limiting process?.\\
+The next natural step would be Chern-Simmons. Let's see whatwe can do in the next informal report.
+
+\section{Apendix: Euler-Maclauring sumation formula}
+Since we use Euler-Maclaurin on several parts on this report we beter sumarize its basic properties. This is taken from wikipedia, of course.\\
+Let $f$ be a $p$ times differentiable function then:
+\begin{gather}
+\sum_{n=1}^{N-1} f(n)=\int_0^N f(x)dx-\frac{1}{2}\left(f(0)+f(N)\right)+\sum_{k=2}^p\frac{B_k}{k!}\left(f^{(k-1}(N)-f^{(k-1}(0)\right)+R
+\end{gather}
+Where $B_k$ are the Bernoulli numbers $B_1=-1$ and all other odd numbers are zero. They are given by the Taylor expansion:
+\begin{gather}
+\frac{t}{1-e^{-t}}=\sum_{k=0}^\infty B_k \frac{t^k}{k!}
+\end{gather}
+The remainder term is
+\begin{gather}
+R=(-1)^{p+1}\int_0^N \frac{f^{(p}(x)}{p!}B_p(x-\lfloor x\rfloor)dx\\
+|R|\leq \frac{2}{(2\pi)^p}\int_0^N\left| f^{(p}(x)\right| dx
+\end{gather}
+Where $B_p(x)$ is a Bernoulli polinomial and $\lfloor x\rfloor$ means the largest integer that is not greater than $x$.\\
+Note that all $f^{(p}(0)=f^{(p}(N)=0$ for all $p>1$ but the error term be different from zero for all $p$.
+\section{Apendix: The method of Duplantier and David}
+Although the proof is now superseeded by our more modern proof I want to incorporate the old calculation here for a number of reasons.
+Fisrt one never knows where the next step will be. Second it has two benefits: It is a proof and it implies Kronecker's first limmit formula.
+\subsection{Notable product}
+We shall calculate the product
+\begin{gather}
+D(\alpha,\beta)=\prod_{n=1}^{N-1}\left[\alpha-\beta\cos\left(\frac{n\pi}{N}\right)\right]=\frac{\lambda_+^N-\lambda_-^N}{\lambda_+-\lambda_-}= \left(\left(\frac{\beta}{2}\right)^{N-1}\frac{\sinh(Nt)}{\sinh t}\right)\\
+\lambda_\pm=\frac{\alpha\pm\sqrt{\alpha^2-\beta^2}}{2},\qquad \cosh t=\frac{\alpha}{\beta}\label{eq:prodNot}
+\end{gather}
+In two different ways, one as we did in ``Informe 3'' and the other one following the ideas of \cite{DupDav}.
+We will first show that $D(\alpha,\beta)$ is actually the determinant of the $N\times N$ matrix
+\begin{gather}
+A_N=\left(\begin{matrix}
+\alpha & \beta/2 & 0 & 0 & ...0 \\
+\beta/2 & \alpha & \beta/2 & 0 & ...0 \\
+0 & \beta/2 & \alpha & \beta/2 &  ... 0 \\
+... & ... & ... &... &...& \\
+0 & 0 &  ...& \beta/2 & \alpha
+\end{matrix}\right)
+\end{gather}
+To compute the determinnat we use the recurrence relation
+\begin{gather}
+|A_N|=\alpha|A_{N-1}|-\frac{\beta^2}{4}|A_{N-2}|\\
+A_2=\alpha^2-\beta^2/4,\qquad A_1=\alpha
+\end{gather}
+That we may write in a matrix form as
+\begin{gather}
+\left(\begin{matrix} |A_N|\\ |A_{N-1}| \end{matrix}\right)=
+\left(\begin{matrix} \alpha & -\frac{\beta^2}{4}\\ 1 & 0\end{matrix}\right)
+\left(\begin{matrix} |A_{N-1}|\\ |A_{N-2}| \end{matrix}\right)=
+\left(\begin{matrix} \alpha & -\frac{\beta^2}{4}\\ 1 & 0\end{matrix}\right)^{N-2}\left(\begin{matrix} |A_{2}|\\ |A_{1}| \end{matrix}\right)
+\end{gather}
+The eigenvalues of the matrix are
+\begin{gather}
+\lambda_{\pm}=\frac{\alpha\pm\sqrt{\alpha^2-\beta^2}}{2}
+\end{gather}
+So we see that,
+\begin{gather}
+\left(\begin{matrix} \alpha & -\frac{\beta^2}{4}\\ 1 & 0\end{matrix}\right)^{N-2}=\frac{1}{\lambda_+-\lambda_-}
+\left(\begin{matrix} \lambda_+ & \lambda_- \\ 1 & 1\end{matrix}\right) \left(\begin{matrix} \lambda_+^{N-2} & 0\\ 0 & \lambda_-^{N-2}\end{matrix}\right)
+\left(\begin{matrix} 1 & -\lambda_-\\ -1 & \lambda_+\end{matrix}\right)
+\end{gather}
+Finally the value of the determinant is
+\begin{gather}
+|A_{N-1}|=\frac{(\lambda_+^{N-2}-\lambda_-^{N-2})|A_2|+(\lambda_-^{N-3}-\lambda_+^{N-3})\lambda_+\lambda_-|A_1|}{\lambda_+-\lambda_-}=\frac{\lambda_+^{N}-\lambda_-^{N}}{\lambda_+-\lambda_-}
+\end{gather}
+For the special case $\alpha=2$ and $\beta=-1$ we obtain $|A_N|=N$. The eigenvalues of the matrix can be computed exactly using a discrete Fourier transform. We will make use of the formulas:
+\begin{gather}
+\sum_{n=1}^{N-1}\sin\left(\frac{n\pi k}{N}\right)\sin\left(\frac{n\pi j}{N}\right)=\frac{N}{2}\delta_{j,k} \\
+\sum_{n=1}^{N-1}\sin\left(\frac{n\pi k}{N}\right)\sin\left(\frac{(n+1)\pi j}{N}\right)=\frac{N}{2}\delta_{j,k}\cos\left(\frac{\pi k}{N}\right)+\Lambda_{j,k}
+\end{gather}
+Where $\Lambda_{j,k}$ satisfies $\Lambda_{i,j}=-\Lambda_{j,i}$. This equations can be prooven by writting $\sin$ as an exponential formula and summing up the geometric series that turn up.
+With these formulas we can write the Fourier discrete tranforms. Let $x_n$ with $n=1..N-1$ a set of $N-1$ complex numbers, we define a \textit{different} set $\hat x_n$ given by
+\begin{gather}
+\hat x_n=\sqrt{\frac{2}{N}}\sum_{k=1}^{N-1}x_k\sin\left(\frac{n\pi k}{N}\right) \\
+x_n=\sqrt{\frac{2}{N}}\sum_{k=1}^{N-1}\hat x_k\sin\left(\frac{n\pi k}{N}\right)
+\end{gather}
+In this manner
+\begin{gather}
+\sum_{n=1}^{N-1}x_n^2=\sum_{n=1}^{N-1}\hat x_n \\
+\sum_{n=1}^{N-2}x_n x_{n+1}=\sum_{n=1}^{N-1} \hat x_n^2 \cos\left(\frac{\pi n}{N}\right)
+\end{gather}
+So to do the integral it seems logical to change variables from $x_n$ to $\hat x_n$ that diagonalize the matrix. The Jacobian of the transformation is 1. The eigenvalues of the matrix $A$ are
+\begin{gather}
+\lambda_n=\alpha+\beta \cos\left(\frac{\pi n}{N}\right)
+\end{gather}
+Carrying out the product of the eigenvalues we find the formula
+\begin{gather}
+\prod_{n=1}^{N-1}\left(\alpha+\beta\cos\left(\frac{\pi n}{N}\right)\right)=|A_{N-1}|
+\end{gather}
+For the second way we define
+\begin{gather}
+A=\frac{\beta}{2},\qquad \cosh t=\frac{\alpha}{\beta} \\
+e^{\pm 2t}-2\frac{\alpha}{\beta}e^{\pm t}+1=0\Rightarrow e^{\pm t}=\frac{\alpha}{\beta}\pm\sqrt{\frac{\alpha^2}{\beta^2}-1}=\frac{2\lambda_\pm}{\beta}
+\end{gather}
+I such a way that
+\begin{gather}
+\log D=(N-1)\log A+\sum_{n=1}^{N-1}\log\left(2\cosh t-2\cos\left(\frac{m \pi}{N}\right)\right)
+\end{gather}
+We use the Fourier serie:
+\begin{gather}
+\log\left[2(\cosh t-\cos \theta)\right]=t-\sum_{k\in\mathbb Z^*}\frac{e^{-|k|t}}{|k|}e^{ik\theta}
+\end{gather}
+To obtain
+\begin{gather}
+\log D=(N-1)\log A+\sum_{n=1}^{N-1}\left[t-\sum_{k\in\mathbb Z^*}\frac{e^{|k|t}}{|k|}e^{ik\pi n/N}\right]= \nonumber\\
+(N-1)\log A+t(N-1)-\sum_{k\in\mathbb Z^*}\left(\frac{e^{|k|t}}{|k|}\sum_{n=1}^{N-1}e^{ik\pi n/N}\right)
+\end{gather}
+As before:
+\begin{gather}
+\sum_{n=1}^{N-1}e^{ik\pi n/N}=-1+\sum_{n=0}^{N-1}e^{ik\pi n/N}
+=-1+\frac{1-e^{i\pi k}}{1-e^{i\pi k/N}}=-1+
+\left\{\begin{matrix}
+0 & \textrm{si } k=2j\\
+\frac{2}{1-e^{i\pi k/N}} & \textrm{si $k$ odd}
+\end{matrix}\right.
+\end{gather}
+valid if $N\neq 2ln$. If this happen the sum is $N-1$.
+\begin{gather}
+\log D=(N-1)\log A+t(N-1)+\sum_{k\in\mathbb Z^*}\frac{e^{|k|t}}{|k|}-2N\sum_{k=1}^\infty \frac{e^{-2Nkt}}{2Nk}-2\sum_{k=1}^\infty\frac{e^{-(2k+1)t}}{2k+1}=\nonumber \\
+(N-1)\log A+t(N-1)-2\log(1-e^{-t})+\log(1-e^{-2Nt})-\log\left(\frac{1+e^{-t}}{1-e^{t}}\right)=\nonumber \\
+\log\left(A^{N-1}\frac{\sinh(Nt)}{\sinh t}\right)
+\end{gather}
+\subsection{Asymptotic product}
+In this subsection we are going to calculate the asymptotic form of the double product
+\begin{gather}
+S(N,M,a,b)=\prod_{n=1,m=1}^{N-1,M-1}\left[4\frac{bN}{aM}\sin^2\left(\frac{\pi n}{2N}\right)+4\frac{aM}{bN}\sin^2\left(\frac{\pi m}{2M}\right)\right]
+\end{gather}
+For the sake of simplicity and to be able to compare with other work we made the following substitutions:
+\begin{gather}
+x^2=\frac{bN}{aM},\quad y^2=\frac{aM}{bN}
+\end{gather}
+We define the functions:
+\begin{gather}
+\phi_1(x/y)=\frac{4}{\pi}\left[\int_0^{\pi/2}\textrm{arcsenh}\left(\frac{x}{y}\sin \theta\right)d\theta-\frac{\pi}{4}\log\left(\frac{x}{y}\right)\right] \\
+\phi_2(x/y)=\log\left(\frac{x}{y}\right)-\textrm{arcsenh}\left(\frac{x}{y}\right)
+\end{gather}
+We shall proof that:
+\begin{gather}
+S(N,M,a,b)\approx e^{NM\phi_1(x/y)+M\phi_2(x/y)+N\phi_2(y/x)}\left(\frac{b^2}{M^2}+\frac{a^2}{N^2}\right)^{1/4}2^{3/2} \det (-\nabla^2)
+\end{gather}
+where $\det (-\nabla^2)=\frac{1}{\sqrt{2}}(ab)^{-14/}\left(\frac{a}{b}\right)^{1/4}\eta\left(i\frac{a}{b}\right)$.
+The first step is todo the product in $m$ according to our notable formula (\ref{eq:prodNot}):
+\begin{gather}
+S=\prod_{n=1}^{N-1}\prod_{m=1}^{M-1}\left[4x^2\sin^2\left(\frac{\pi n}{2N}\right)+2y^2-2y^2\cos\left(\frac{\pi m}{M}\right)\right]\nonumber\\=
+\prod_{n=1}^{N-1}\left[\left(\frac{\beta_n}{2}\right)^{M-1}\frac{\sinh(Mt_n)}{\sinh t_n}\right] \\
+\beta_n=2y^2,\qquad \alpha_n=4x^2\sin^2\left(\frac{n\pi}{2N}\right)+2y^2 \\
+\cosh t_n=\frac{\alpha_n}{\beta_n}=2\frac{x^2}{y^2}\sin^2\left(\frac{n\pi}{2N}\right)+1\Rightarrow \sinh\left(\frac{t_n}{2}\right)=\frac{x}{y}\sin\left(\frac{n\pi}{2N}\right)
+\end{gather}
+We compute each term separately
+\begin{gather}
+\prod_{n=1}^{N-1}\sinh t_n=\prod_{n=1}^{N-1}\left[2\sinh (t_n/2)\cosh(t_n/2)\right] \\
+\prod_{n=1}^{N-1} 2\sinh(t_n/2)=\prod_{n=1}^{N-1} \left[\frac{x}{y}2\sin\left(\frac{\pi n}{2N}\right)\right]=\left(\frac{x}{y}\right)^{N-1}\sqrt{N}\\
+\prod_{n=1}^{N-1}\left(\cosh(t_n/2)\right)=\prod_{n=1}^{N-1}\left(1+\sinh^2(t_n/2)\right)^\frac{1}{2}=
+\prod_{n=1}^{N-1}\left(1+\frac{x^2}{y^2}\sin^2\left(\frac{\pi n}{2N}\right)\right)^\frac{1}{2}=\nonumber \\
+\prod_{n=1}^{N-1}\left(1+\frac{x^2}{2y^2}-\frac{x^2}{2y^2}\cos\left(\frac{\pi n}{N}\right)\right)^\frac{1}{2}
+\end{gather}
+using once again the formula (\ref{eq:prodNot})
+\begin{gather}
+\prod_{n=1}^{N-1}\left(\cosh(t_n/2)\right)=\left(\frac{x}{2y}\right)^{(N-1)}\sqrt{\frac{\sinh(Nt)}{\sinh t}}
+\approx \left(\frac{x}{2y}\right)^{(N-1)} \sqrt{\frac{e^{Nt}}{2\sinh t}}\\
+t=\log\left(\frac{2y^2}{x^2}+1+2\frac{y}{x}\sqrt{\frac{y^2}{x^2}+1}\right)=2\log\left(\frac{y}{x}+\sqrt{1+\frac{y^2}{x^2}}\right)=2\textrm{arcsenh}\left(\frac{y}{x}\right)\\
+2\sinh t=4\frac{y}{x}\sqrt{1+\frac{y^2}{x^2}}=\frac{4\left(x^2+y^2\right)^{1/2}}{x^{3/2}}
+\end{gather}
+We only need to deal with the product $\prod \sinh(Mt_n)$.
+\begin{gather}
+\prod_{n=1}^{N-1}\sinh(Mt_n)=\frac{1}{2^{N-1}} \prod_{n=1}^{N-1}e^{Mt_n} \prod_{n=1}^{N-1}(1-e^{-2Mt_n})
+\end{gather}
+In orther to calculate $\sum t_n$ we shall use Euler-MacLauring again!:
+\begin{gather}
+\sum_{n=1}^{N-1}f(n)=\int_0^N f(x)dx-\frac{1}{2}\left(f(0)+f(N)\right)+\sum_{k=2}^\infty\frac{B_{k}}{k!}\left(f^{(k-1}(N)-f^{(k-1}(0)\right)
+\end{gather}
+Where $B_{k}=\{-1/2,1/6,0,-130,0,..\}$ are Bernouilli numbers. $f(x)$ will be the function:
+\begin{gather}
+y\sinh\left(t\left(\xi\right)/2\right)=x\sin\left(\frac{\pi \xi}{2N}\right), \\
+t\left(\xi\right)=2\textrm{arcsinh}\left(\frac{x}{y}\sin\left(\frac{\pi \xi}{2N}\right)\right)
+\end{gather}
+We can compute
+\begin{gather}
+t(0)=0,\quad t(N)=2\textrm{arcsinh}\left(\frac{x}{y}\right) \\
+yt'(\xi)\cosh\left(t\left(\xi\right)/2\right)=\frac{\pi x}{N}\cos\left(\frac{\pi \xi}{2N}\right)\Rightarrow t'(\xi)=\frac{\pi x}{Ny}\frac{\cos\left(\frac{\pi \xi}{2N}\right)}{\cosh\left(t\left(\xi\right)/2\right)} \\
+t'(0)=\frac{\pi x}{Ny},\qquad t'(N)=0
+\end{gather}
+In such a way that
+\begin{gather}
+M\sum_{n=1}^{N-1}t_n=M\int_0^N t\left(\xi\right)d\xi-M\textrm{arcsinh}\left(\frac{x}{y}\right)-\frac{1}{12}\frac{\pi Mx}{Ny}=  \\
+\frac{4NM}{\pi}\int_0^{\pi/2}\textrm{arcsinh}\left(\frac{x}{y}\sin\theta\right)d\theta-M\textrm{arcsinh}\left(\frac{x}{y}\right)-\frac{1}{12}\frac{\pi b}{a}
+\end{gather}
+On the other hand
+\begin{gather}
+\prod_{n=1}^{N-1}\left(1-e^{-2Mt_n}\right)\approx \prod_{n=1}^\infty\left(1-e^{-2\pi nb/a}\right)
+\end{gather}
+This is clearly true for small values of $n$, for values a little bigger both terms contribute with 1. I would be interesting to have a proof that would take the validity of the approximation into consideration.
+
+\begin{thebibliography}{voy}
+\bibitem{DupDav} Bertrand Duplantier and François David ``Exact partition function and correlation functions of multiple Hamiltonian walks on the Manhattan Lattice'' Journal of Statistical Physics, Vol 51 N 3/4 p. 327-434(1988)
+\bibitem{Fer} Arthur E. Ferdinand ``Statistical mechanics of Dimers on a cuadratic lattice'' Journal of math. phys. Vol 8, N 12 p. 2332-2339 (1967)
+\bibitem{Kas} P.W. Kasteleyn ``The statistics of dimers on a lattice''
+\bibitem{RaySing} Ray-Singer ``R-Torsion and the Laplacian on Riemann Manifolds'' Advances in Mathematics 7, 145-210 (1971)
+ \bibitem{RaySin} Ray-Singer Analytic Torsion for complex manifolds
+\bibitem{Ray} Ray ``Reidemeister Torsion and the Laplacian on Lens Spaces''
+\bibitem{QuiRic} J.R. Quine and Richard R. Song ``A double Stirling formula'' Proc. Ame. Math Soc. Vol 119 373-379 (1993)
+\bibitem{Lang} Serge Lang ``Elliptic functions''
+\bibitem{Son} J. Sondow ``Analytic continuation of Riemann's Zeta function and values at negative integers via Euler's transformation of series'' Proc. Ame. Math Soc. Vol 120 421-424 (1994)
+\bibitem{DhokPho} D'Hoker and D.H. Phong ``On determiants of Laplacians on Riemann surfaces'' Commun. Math. Phys. 104, p. 537-545 (1986)
+\bibitem{Var} Ilan Vardi ``Determinants of Laplacians and multiple gamma functions'' Siam J. math anal. Vol 19 p. 493-507(1988)
+\bibitem{Voros} A. Voros ``Spectral functions, special functions and the Selberg Zeta function'' Commun. Math. Phys 110, 439-465 (1987)
+\bibitem{Sch} A.S. Schwarz ``The partition function of a degenerate Lagrangian'' Commun. Math. Phys 67, 1-16 (1979)
+\bibitem{Witten} Witten ``Quantum Field Theory and the Jones Polinomial'' Commun. Math. Phys 121, 351-399 (1989)
+\bibitem{informe3} ``Aplicaciones topológicas de la integral funconal. Informe informal \# 3''
+\bibitem{Muller} ``Analytic torsion and R-torsion of Rimannian Manifolds''Ad. in Math. 28, 233-305 (1978)
+\bibitem{DodPat} J. Dodziuk and V.K. Patodi ``Riemannian structures and triangulations of manifolds'' J. Indian Math. Soc.  40 (1976), pp. 1-52
+\bibitem{CinJorKar} G. Chinta, J. Jogenson and A. Karlsson. ``Zeta functions, heat kernels and spectral asymptotics on degenerating families of discrete tori'' hep/0806.2014
+\bibitem{Kac} Mark Kac ``Can one hear the shape of a drum'', Ammer. Math. Monthly 1966 Vol 73 pp. 1-23
+\bibitem{MacSin} H.P. MacKean, JR and I.M. Singer ``Curvature and the eigenvalues of the Laplacian'' J. of Differential geometry 1 (1987) 43-69
+\bibitem{Key} Richard Kenyon ``The asymptotic determinant of the discrete Laplacian'' http://arxiv.org/abs/math-ph/0011042
+\bibitem{DukIma} William Duke and Özlem Imamo\~glu ``Special values of multiple gamma functions'' Journal de Théorie des Nombres de Bordeaux 18 (2006), 113-123
+\bibitem{Lyo} Russell Lyons ``Asymptotic enumeration of spanning trees'' http://arxiv.org/abs/math/0212165v7
+\bibitem{JacSalSok} Jesper Lykke Jacobsen, Jesus Salas and  Alan D. Sokal ``Spanning forests and the $q$-state Potts model in the limit $q \to 0$ '' http://arxiv.org/abs/cond-mat/0401026
+\end{thebibliography}
+
+\end{document}

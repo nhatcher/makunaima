@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="Generator" content="Kate, the KDE Advanced Text Editor" />
+<title>creator.py</title>
+</head>
+<body>
+<pre>
+<span style='color: #888786'><i>#! /usr/bin/env python3.1</i></span>
+<span style='color: #888786'><i># -*- coding: utf-8 -*-</i></span>
+<span style='color: #ff80e0'>import</span><span style='color: #141312'> re, os</span>
+<span style='color: #ff80e0'>import</span><span style='color: #141312'> random</span>
+
+<span style='color: #141312'><b>def</b> latexpng(filename, what):</span>
+<span style='color: #141312'>    f=</span><span style='color: #0057ae'>open</span><span style='color: #141312'>(filename+</span><span style='color: #bf0303'>'.tex'</span><span style='color: #141312'>,</span><span style='color: #bf0303'>'w'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    f.write(preamble)</span>
+<span style='color: #141312'>    f.write(</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\n\\</span><span style='color: #bf0303'>begin{document}</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    f.write(</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\\</span><span style='color: #bf0303'>thispagestyle{empty}'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    f.write(what)</span>
+<span style='color: #141312'>    f.write(</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\n\\</span><span style='color: #bf0303'>end{document}</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    f.write(</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    f.close()</span>
+<span style='color: #141312'>    os.system(</span><span style='color: #bf0303'>'latex -interaction batchmode '</span><span style='color: #141312'>+filename+</span><span style='color: #bf0303'>'.tex'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    os.system(</span><span style='color: #bf0303'>'dvipng -o '</span><span style='color: #141312'>+filename+</span><span style='color: #bf0303'>'.png -T tight -bg Transparent -D 140 '</span><span style='color: #141312'>+filename+</span><span style='color: #bf0303'>'.dvi'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    os.remove(filename+</span><span style='color: #bf0303'>'.tex'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    os.remove(filename+</span><span style='color: #bf0303'>'.log'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    os.remove(filename+</span><span style='color: #bf0303'>'.aux'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    os.remove(filename+</span><span style='color: #bf0303'>'.dvi'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    </span>
+<span style='color: #141312'>regExpPreg=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\\begin\{Pregunta\}\{(\d*)\}\{(\d*)\}\s*(.*?)\s*(\\Opcion\s*.*?)\\end\{Pregunta\}'</span><span style='color: #141312'>,re.DOTALL)</span>
+<span style='color: #141312'>regExpOp=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\\Opcion(.*?)(?=(\\Opcion)|\Z)'</span><span style='color: #141312'>,re.DOTALL)</span>
+<span style='color: #141312'>regExpVars=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\</span><span style='color: #141312'>%B</span><span style='color: #bf0303'>EGINVARS\n(.*)\</span><span style='color: #141312'>%E</span><span style='color: #bf0303'>NDVARS'</span><span style='color: #141312'>,re.DOTALL)</span>
+<span style='color: #141312'>regExpFields=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\</span><span style='color: #141312'>%B</span><span style='color: #bf0303'>EGINFIELDS\n(.*)\</span><span style='color: #141312'>%E</span><span style='color: #bf0303'>NDFIELDS'</span><span style='color: #141312'>,re.DOTALL)</span>
+<span style='color: #141312'>regExpDefs=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\</span><span style='color: #141312'>%B</span><span style='color: #bf0303'>EGINDEFS\n(.*)\</span><span style='color: #141312'>%E</span><span style='color: #bf0303'>NDDEFS'</span><span style='color: #141312'>,re.DOTALL)</span>
+<span style='color: #141312'>regExpStyle=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\</span><span style='color: #141312'>%B</span><span style='color: #bf0303'>EGINSTYLE\n(.*)\</span><span style='color: #141312'>%E</span><span style='color: #bf0303'>NDSTYLE'</span><span style='color: #141312'>,re.DOTALL)</span>
+
+<span style='color: #141312'>letters=</span><span style='color: #bf0303'>'abcdefghijklmnopqrstuvwxyz'</span>
+<span style='color: #141312'>f = </span><span style='color: #0057ae'>open</span><span style='color: #141312'>(</span><span style='color: #bf0303'>'quiz.tex'</span><span style='color: #141312'>, </span><span style='color: #bf0303'>'r'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>text=f.read()</span>
+<span style='color: #141312'>f.close()</span>
+<span style='color: #141312'>mystyles=regExpStyle.search(text)</span>
+<span style='color: #141312'>regExpStyleExamPDF=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'ExamStylePDF=(.*)'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>regExpStyleHeadPDF=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'HeadStylePDF=(.*)'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>regExpStyleExamHTML=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'ExamStyleHTML=(.*)'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>regExpStyleHeadHTML=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'HeadStyleHTML=(.*)'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>filename=regExpStyleHeadPDF.search(mystyles.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>))</span>
+<span style='color: #141312'>name=filename.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>)+</span><span style='color: #bf0303'>'HeadPDF.molde'</span>
+<span style='color: #141312'>f=</span><span style='color: #0057ae'>open</span><span style='color: #141312'>(name,</span><span style='color: #bf0303'>'r'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>allheadtex=f.read()</span>
+<span style='color: #141312'>f.close()</span>
+<span style='color: #141312'>name=filename.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>)+</span><span style='color: #bf0303'>'ExamPDF.molde'</span>
+<span style='color: #141312'>f=</span><span style='color: #0057ae'>open</span><span style='color: #141312'>(name,</span><span style='color: #bf0303'>'r'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>examtex=f.read()</span>
+<span style='color: #141312'>f.close()</span>
+<span style='color: #141312'>name=filename.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>)+</span><span style='color: #bf0303'>'HeadHTML.molde'</span>
+<span style='color: #141312'>f=</span><span style='color: #0057ae'>open</span><span style='color: #141312'>(name,</span><span style='color: #bf0303'>'r'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>html=f.read()</span>
+<span style='color: #141312'>f.close()</span>
+<span style='color: #141312'>name=filename.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>)+</span><span style='color: #bf0303'>'HTMLcheck.molde'</span>
+<span style='color: #141312'>f=</span><span style='color: #0057ae'>open</span><span style='color: #141312'>(name,</span><span style='color: #bf0303'>'r'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>htmlcheck=f.read()</span>
+<span style='color: #141312'>f.close()</span>
+
+<span style='color: #141312'>mydefs=regExpDefs.search(text)</span>
+<span style='color: #141312'>myvars=regExpVars.search(text)</span>
+
+<span style='color: #141312'>myfields=regExpFields.search(text)</span>
+<span style='color: #141312'>preamble=mydefs.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>)</span>
+
+<span style='color: #141312'>mydefs=regExpDefs.search(examtex)</span>
+
+<span style='color: #141312'>preamble=preamble+mydefs.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>regExpVar=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'(.*?)=(.*)'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>regExpField=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'(.*?)\((\d*?)\)=(.*)'</span><span style='color: #141312'>)</span>
+
+<span style='color: #141312'>variables=regExpVar.findall(myvars.group(</span><span style='color: #b08000'>0</span><span style='color: #141312'>))</span>
+<span style='color: #141312'>campos=regExpField.findall(myfields.group(</span><span style='color: #b08000'>0</span><span style='color: #141312'>))</span>
+
+<span style='color: #141312'>regExpOpcionBody=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\</span><span style='color: #141312'>%B</span><span style='color: #bf0303'>EGINOPCION\n(.*)\n\</span><span style='color: #141312'>%E</span><span style='color: #bf0303'>NDOPCION'</span><span style='color: #141312'>,re.DOTALL)</span>
+<span style='color: #141312'>regExpPreguntaBody=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\</span><span style='color: #141312'>%B</span><span style='color: #bf0303'>EGINPREGUNTA\n(.*)\n\</span><span style='color: #141312'>%E</span><span style='color: #bf0303'>NDPREGUNTA'</span><span style='color: #141312'>,re.DOTALL)</span>
+<span style='color: #141312'>regExpHeadBody=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\</span><span style='color: #141312'>%B</span><span style='color: #bf0303'>EGINHEADDEF\n(.*)\n\</span><span style='color: #141312'>%E</span><span style='color: #bf0303'>NDHEADDEF'</span><span style='color: #141312'>,re.DOTALL)</span>
+<span style='color: #141312'>regExpCommands=re.</span><span style='color: #0057ae'>compile</span><span style='color: #141312'>(</span><span style='color: #bf0303'>r'\</span><span style='color: #141312'>%B</span><span style='color: #bf0303'>EGINEXAMCOMMAND\n(.*)\n\</span><span style='color: #141312'>%E</span><span style='color: #bf0303'>NDEXAMCOMMAND'</span><span style='color: #141312'>,re.DOTALL)</span>
+<span style='color: #141312'>OpcionBody=regExpOpcionBody.search(examtex)</span>
+<span style='color: #141312'>PreguntaBody=regExpPreguntaBody.search(examtex)</span>
+<span style='color: #141312'>headtex=regExpHeadBody.search(allheadtex).group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>begincommands=regExpCommands.search(allheadtex)</span>
+
+<span style='color: #141312'><b>if</b> os.path.isdir(</span><span style='color: #bf0303'>'images'</span><span style='color: #141312'>)!=</span><span style='color: #006e28'>True</span><span style='color: #141312'> :</span>
+<span style='color: #141312'>    os.mkdir(</span><span style='color: #bf0303'>'images'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>os.chdir(</span><span style='color: #bf0303'>'images'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>imag=</span><span style='color: #006e28'>False</span>
+<span style='color: #141312'><b>for</b> x in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(variables)):</span>
+<span style='color: #141312'>    headtex=headtex.replace(</span><span style='color: #bf0303'>'_|_'</span><span style='color: #141312'>+variables[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>],variables[x][</span><span style='color: #b08000'>1</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>    html=html.replace(</span><span style='color: #bf0303'>'_|_'</span><span style='color: #141312'>+variables[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>],</span><span style='color: #bf0303'>'&lt;img src=</span><span style='color: #ff80e0'>\"</span><span style='color: #bf0303'>../images/'</span><span style='color: #141312'>+variables[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>'.png</span><span style='color: #ff80e0'>\"</span><span style='color: #bf0303'> alt="" /&gt;'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    <b>if</b> imag: latexpng(variables[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>],variables[x][</span><span style='color: #b08000'>1</span><span style='color: #141312'>])</span>
+<span style='color: #141312'><b>for</b> x in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(campos)):</span>
+<span style='color: #141312'>    headtex=headtex.replace(</span><span style='color: #bf0303'>'_|_'</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>],campos[x][</span><span style='color: #b08000'>2</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>': </span><span style='color: #ff80e0'>\\</span><span style='color: #bf0303'>underline{</span><span style='color: #ff80e0'>\\</span><span style='color: #bf0303'>hspace{'</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>1</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>'cm}}'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    html=html.replace(</span><span style='color: #bf0303'>'_|_'</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>],</span><span style='color: #bf0303'>'&lt;div id="'</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>'label"&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>\</span>
+<span style='color: #bf0303'>    &lt;img src="../images/'</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>'.png" alt=""/&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>\</span>
+<span style='color: #bf0303'>    &lt;/div&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>\</span>
+<span style='color: #bf0303'>    &lt;div id="'</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>'field"&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>\</span>
+<span style='color: #bf0303'>    &lt;input id="'</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>'" type="text" size="'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(</span><span style='color: #b08000'>4</span><span style='color: #141312'>*</span><span style='color: #0057ae'>float</span><span style='color: #141312'>(campos[x][</span><span style='color: #b08000'>1</span><span style='color: #141312'>]))+</span><span style='color: #bf0303'>'" alt="" readonly value="&lt;?php print($'</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>');?&gt;"/&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>\</span>
+<span style='color: #bf0303'>    &lt;/div&gt;'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    <b>if</b> imag: latexpng(campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>],campos[x][</span><span style='color: #b08000'>2</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>    </span>
+<span style='color: #141312'>os.chdir(</span><span style='color: #bf0303'>'..'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>ListaPreguntas=regExpPreg.findall(text)</span>
+
+
+
+<span style='color: #888786'><i># Here we capture all the questions and options. The value of each option and the right option </i></span>
+<span style='color: #888786'><i># We save them in a list Questions</i></span>
+
+<span style='color: #141312'>MAX=</span><span style='color: #b08000'>0</span><span style='color: #141312'> </span><span style='color: #888786'><i>#Guarda en número de opciones de la pregunta con más opciones. Es para saber cuantas imágenes a), b) c)... generar</i></span>
+<span style='color: #141312'>Questions=[]</span>
+<span style='color: #888786'><i># question [ numero de pregunta, valor, válida, pregunta , [ [ numero opcion, opocion] .... ]</i></span>
+<span style='color: #141312'><b>for</b> i,preg in </span><span style='color: #0057ae'>enumerate</span><span style='color: #141312'>(ListaPreguntas):</span>
+<span style='color: #141312'>    question=[]</span>
+<span style='color: #141312'>    question.append(</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i))</span>
+<span style='color: #141312'>    question.append(preg[</span><span style='color: #b08000'>0</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>    question.append(preg[</span><span style='color: #b08000'>1</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>    question.append(preg[</span><span style='color: #b08000'>2</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>    ListaOpciones=regExpOp.findall(preg[</span><span style='color: #b08000'>3</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>    opciones=[]</span>
+<span style='color: #141312'>    <b>for</b> j,opt in </span><span style='color: #0057ae'>enumerate</span><span style='color: #141312'>(ListaOpciones):</span>
+<span style='color: #141312'>        opcion=[j,opt[</span><span style='color: #b08000'>0</span><span style='color: #141312'>]]</span>
+<span style='color: #141312'>        opciones.append(opcion)</span>
+<span style='color: #141312'>    <b>if</b> MAX&lt;j: MAX=j</span>
+<span style='color: #141312'>    question.append(opciones)</span>
+<span style='color: #141312'>    Questions.append(question)</span>
+
+
+<span style='color: #141312'><b>if</b> os.path.isdir(</span><span style='color: #bf0303'>'images'</span><span style='color: #141312'>)!=</span><span style='color: #006e28'>True</span><span style='color: #141312'> :</span>
+<span style='color: #141312'>    os.mkdir(</span><span style='color: #bf0303'>'images'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>os.chdir(</span><span style='color: #bf0303'>'images'</span><span style='color: #141312'>)</span>
+
+<span style='color: #888786'><i># Genera las imagenes </i></span>
+<span style='color: #141312'><b>if</b> imag:</span>
+<span style='color: #141312'>    </span>
+<span style='color: #141312'>    <b>for</b> i in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(MAX+</span><span style='color: #b08000'>1</span><span style='color: #141312'>):</span>
+<span style='color: #141312'>        latexpng(</span><span style='color: #bf0303'>'letra'</span><span style='color: #141312'>+letters[i],letters[i]+</span><span style='color: #bf0303'>')'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    latexpng(</span><span style='color: #bf0303'>'letra'</span><span style='color: #141312'>,</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\\</span><span style='color: #bf0303'>phantom{a)}'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    <b>for</b> i in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions)):</span>
+<span style='color: #141312'>        latexpng(</span><span style='color: #bf0303'>'p'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i),Questions[i][</span><span style='color: #b08000'>3</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>        latexpng(</span><span style='color: #bf0303'>'preg'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i),</span><span style='color: #bf0303'>'P'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i+</span><span style='color: #b08000'>1</span><span style='color: #141312'>))</span>
+<span style='color: #141312'>        <b>for</b> j in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions[i][</span><span style='color: #b08000'>4</span><span style='color: #141312'>])):</span>
+<span style='color: #141312'>            latexpng(</span><span style='color: #bf0303'>'o'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(j)+</span><span style='color: #bf0303'>'p'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i),x[</span><span style='color: #b08000'>1</span><span style='color: #141312'>])</span>
+
+<span style='color: #141312'>respuestas=</span><span style='color: #bf0303'>'&lt;table class="resp"&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>&lt;tr&gt;'</span>
+<span style='color: #141312'><b>for</b> i in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions)):</span>
+<span style='color: #141312'>    respuestas+=</span><span style='color: #bf0303'>'&lt;td&gt;&lt;img src="../images/preg'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>'.png" alt=""/&gt;&lt;/td&gt;'</span>
+<span style='color: #141312'>respuestas+=</span><span style='color: #bf0303'>'&lt;/tr&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>&lt;tr&gt;'</span>
+<span style='color: #141312'><b>for</b> i in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions)):</span>
+<span style='color: #141312'>    respuestas+=</span><span style='color: #bf0303'>'&lt;td&gt;&lt;img src="../images/letra.png" id="preg'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>'" alt=""/&gt;&lt;/td&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span>
+<span style='color: #141312'>respuestas+=</span><span style='color: #bf0303'>'&lt;/tr&gt;&lt;/table&gt;'</span>
+
+
+<span style='color: #141312'>html=html.replace(</span><span style='color: #bf0303'>'_|_respuestas'</span><span style='color: #141312'>,respuestas)</span>
+
+<span style='color: #141312'>donotforget=</span><span style='color: #bf0303'>'&lt;script type="text/javascript"&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>&lt;?php</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span>
+<span style='color: #141312'><b>for</b> i in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions)):</span>
+<span style='color: #141312'>    donotforget+=</span><span style='color: #bf0303'>'if($p'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>'!=</span><span style='color: #ff80e0'>\'</span><span style='color: #bf0303'>off</span><span style='color: #ff80e0'>\'</span><span style='color: #bf0303'>) print("document.getElementById(</span><span style='color: #ff80e0'>\'</span><span style='color: #bf0303'>".$p'</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>'."</span><span style='color: #ff80e0'>\'</span><span style='color: #bf0303'>).checked=true;</span><span style='color: #ff80e0'>\\</span><span style='color: #bf0303'>n");</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>;</span>
+<span style='color: #141312'>donotforget+=</span><span style='color: #bf0303'>'?&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>&lt;/script&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>    </span>
+
+<span style='color: #141312'>html=html.replace(</span><span style='color: #bf0303'>'_|_donotforget'</span><span style='color: #141312'>,donotforget)</span>
+
+<span style='color: #141312'>f=</span><span style='color: #0057ae'>open</span><span style='color: #141312'>(</span><span style='color: #bf0303'>"myexam.php"</span><span style='color: #141312'>,</span><span style='color: #bf0303'>'w'</span><span style='color: #141312'>)</span>
+
+
+<span style='color: #141312'>f.write(</span><span style='color: #bf0303'>'&lt;?php include("toselectandprotect.php"); ?&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'> '</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>f.write(</span><span style='color: #bf0303'>"&lt;?php</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>$disabled=false;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>"</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>f.write(</span><span style='color: #bf0303'>"$code=$_SESSION['code'];</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>"</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>f.write(</span><span style='color: #bf0303'>"if( isset($_POST['pass'])) $clave=$_POST['pass']; else $clave=</span><span style='color: #ff80e0'>\"\"</span><span style='color: #bf0303'>;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>"</span><span style='color: #141312'>)</span>
+<span style='color: #141312'><b>for</b> x in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(campos)):</span>
+<span style='color: #141312'>    f.write(</span><span style='color: #bf0303'>"$"</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>"=$_SESSION['"</span><span style='color: #141312'>+campos[x][</span><span style='color: #b08000'>0</span><span style='color: #141312'>]+</span><span style='color: #bf0303'>"'];</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>"</span><span style='color: #141312'>)</span>
+<span style='color: #141312'><b>for</b> i in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions)):</span>
+<span style='color: #141312'>    f.write(</span><span style='color: #bf0303'>"if(isset($_POST['p"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>"'])) $p"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>"=$_POST['p"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>"']; else $p"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>"='off';</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>"</span><span style='color: #141312'>);</span>
+<span style='color: #141312'>f.write(</span><span style='color: #bf0303'>"if($clave=='letmein'){</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>"</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>f.write(</span><span style='color: #bf0303'>"</span><span style='color: #ff80e0'>\t</span><span style='color: #bf0303'>$nota=0;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>"</span><span style='color: #141312'>)</span>
+<span style='color: #141312'><b>for</b> i in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions)):</span>
+<span style='color: #141312'>    f.write(</span><span style='color: #bf0303'>"</span><span style='color: #ff80e0'>\t</span><span style='color: #bf0303'>if($p"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>"=='o"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(Questions[i][</span><span style='color: #b08000'>2</span><span style='color: #141312'>])+</span><span style='color: #bf0303'>"p"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(i)+</span><span style='color: #bf0303'>"') $nota=$nota+"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(Questions[i][</span><span style='color: #b08000'>1</span><span style='color: #141312'>])+</span><span style='color: #bf0303'>";</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>"</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>f.write(</span><span style='color: #bf0303'>"""$link = mysql_connect('localhost', 'belga', 'yo')</span>
+<span style='color: #bf0303'>        or die('No pude conectar: ' . mysql_error());</span>
+<span style='color: #bf0303'>    mysql_select_db('examen') or die('No he podido seleccionar la base de datos');</span>
+<span style='color: #bf0303'>    $query=sprintf('update students set nota=</span><span style='color: #141312'>%d</span><span style='color: #bf0303'> where carnet=</span><span style='color: #ff80e0'>\\</span><span style='color: #bf0303'>'</span><span style='color: #141312'>%s</span><span style='color: #ff80e0'>\\</span><span style='color: #bf0303'>'',$nota,$carnet);</span>
+<span style='color: #bf0303'>    mysql_query($query);"""</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>f.write(</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\t</span><span style='color: #bf0303'>unset($_SESSION[</span><span style='color: #ff80e0'>\'</span><span style='color: #bf0303'>valid_user</span><span style='color: #ff80e0'>\'</span><span style='color: #bf0303'>]);</span><span style='color: #ff80e0'>\n\t</span><span style='color: #bf0303'>session_destroy();</span><span style='color: #ff80e0'>\n\t</span><span style='color: #bf0303'>$disabled=true;}</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>?&gt;</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>f.write(html)</span>
+<span style='color: #141312'>f.close()</span>
+
+
+<span style='color: #141312'>numExam=</span><span style='color: #0057ae'>int</span><span style='color: #141312'>(</span><span style='color: #0057ae'>input</span><span style='color: #141312'>(</span><span style='color: #bf0303'>"¿Cuantos Exámenes quieres? "</span><span style='color: #141312'>))</span>
+
+<span style='color: #141312'>f=</span><span style='color: #0057ae'>open</span><span style='color: #141312'>(</span><span style='color: #bf0303'>"keyReading.dat"</span><span style='color: #141312'>,</span><span style='color: #bf0303'>'w'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>latexfile=</span><span style='color: #0057ae'>open</span><span style='color: #141312'>(</span><span style='color: #bf0303'>"love.tex"</span><span style='color: #141312'>,</span><span style='color: #bf0303'>'w'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>latexfile.write(preamble)</span>
+<span style='color: #141312'>latexfile.write(headtex)</span>
+<span style='color: #141312'>latexfile.write(</span><span style='color: #bf0303'>"</span><span style='color: #ff80e0'>\n\\</span><span style='color: #bf0303'>begin{document}</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>"</span><span style='color: #141312'>)</span>
+<span style='color: #141312'><b>for</b> k in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(numExam):</span>
+<span style='color: #141312'>    latexfile.write(begincommands.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>).replace(</span><span style='color: #bf0303'>'_|_code'</span><span style='color: #141312'>,</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(k)))</span>
+<span style='color: #141312'>    mi_lista_preg=[]</span>
+<span style='color: #141312'>    <b>for</b> item in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions)): mi_lista_preg.append(item)</span>
+<span style='color: #141312'>    random.shuffle(mi_lista_preg)</span>
+<span style='color: #141312'>    <b>for</b> i in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions)):</span>
+<span style='color: #141312'>        linea=</span><span style='color: #bf0303'>"P"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(mi_lista_preg[i])</span>
+<span style='color: #141312'>        mi_lista_opt=[]</span>
+<span style='color: #141312'>        <b>for</b> item in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(Questions[mi_lista_preg[i]][</span><span style='color: #b08000'>4</span><span style='color: #141312'>])): mi_lista_opt.append(item)</span>
+<span style='color: #141312'>        random.shuffle(mi_lista_opt)</span>
+<span style='color: #141312'>        option=</span><span style='color: #bf0303'>''</span>
+<span style='color: #141312'>        options=</span><span style='color: #bf0303'>''</span>
+<span style='color: #141312'>        <b>for</b> j in </span><span style='color: #0057ae'>range</span><span style='color: #141312'>(</span><span style='color: #0057ae'>len</span><span style='color: #141312'>(mi_lista_opt)):</span>
+<span style='color: #141312'>            linea+=</span><span style='color: #bf0303'>"O"</span><span style='color: #141312'>+</span><span style='color: #0057ae'>str</span><span style='color: #141312'>(mi_lista_opt[j])</span>
+<span style='color: #141312'>            option=OpcionBody.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>).replace(</span><span style='color: #bf0303'>'#letter'</span><span style='color: #141312'>,letters[j])</span>
+<span style='color: #141312'>            option=option.replace(</span><span style='color: #bf0303'>'#opcion'</span><span style='color: #141312'>,Questions[mi_lista_preg[i]][</span><span style='color: #b08000'>4</span><span style='color: #141312'>][mi_lista_opt[j]][</span><span style='color: #b08000'>1</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>            options+=option</span>
+<span style='color: #141312'>        pregunta=PreguntaBody.group(</span><span style='color: #b08000'>1</span><span style='color: #141312'>).replace(</span><span style='color: #bf0303'>'#puntos'</span><span style='color: #141312'>,Questions[mi_lista_preg[i]][</span><span style='color: #b08000'>1</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>        pregunta=pregunta.replace(</span><span style='color: #bf0303'>'#enunciado'</span><span style='color: #141312'>,Questions[mi_lista_preg[i]][</span><span style='color: #b08000'>3</span><span style='color: #141312'>])</span>
+<span style='color: #141312'>        pregunta=re.sub(regExpOpcionBody,</span><span style='color: #bf0303'>'#opciones'</span><span style='color: #141312'>,pregunta)</span>
+<span style='color: #141312'>        pregunta=pregunta.replace(</span><span style='color: #bf0303'>'#opciones'</span><span style='color: #141312'>,options)</span>
+<span style='color: #141312'>        latexfile.write(pregunta+</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>        f.write(linea)</span>
+<span style='color: #141312'>    f.write(</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>    latexfile.write(</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\n\\</span><span style='color: #bf0303'>pagebreak</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>f.close()</span>
+<span style='color: #141312'>latexfile.write(</span><span style='color: #bf0303'>'</span><span style='color: #ff80e0'>\\</span><span style='color: #bf0303'>end{document}</span><span style='color: #ff80e0'>\n</span><span style='color: #bf0303'>'</span><span style='color: #141312'>)</span>
+<span style='color: #141312'>latexfile.close()</span>
+</pre></body>
+</html>

@@ -1,0 +1,137 @@
+html, body {
+    height: 100%;
+    margin-top:0px;
+    padding: 0;
+    }
+#cuerpo{
+margin-top: 320px;
+position: absolute;
+}
+#upstream {
+    background: #eeeeee;
+    height: 300px;
+    width: 1200px;
+    text-align: left;
+    border-style: solid dashed;
+    position: absolute;
+}
+
+#logo{
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 150px;
+    text-align: center;
+    position: relative;
+    float: left;
+}
+
+
+
+#datos {
+    margin-left:350px;
+    margin-top:70px;
+    text-align: left;
+    position: relative;
+}
+
+#carnetlabel{
+    float: left;
+    position: relative;
+}
+#carnetfield{
+    float: left;
+    position: relative;
+}
+#nombrelabel {
+    float: left;
+    position: relative;
+}
+#nombrefield {  
+    float: left;
+    position: relative;
+}
+
+#seccionlabel {
+    margin-left: 50px;
+    float: left;
+    position: relative;
+}
+#seccionfield {
+    float: left;
+    position: relative;
+}
+#profesorlabel{
+    float: left;
+    position: relative;
+}
+
+#profesorfield{
+    float: left;
+    position: relative;
+}
+
+#materia{
+    margin-top: 30px;
+    margin-left: 50px;
+    text-align: left;
+    position: relative;
+}
+#trimestre{
+    text-align: left;
+    margin-left: 50px;
+    float: left;
+    position: relative;
+}
+#titulo{
+    float: left;
+    margin-left: 800px;
+    margin-top:-30px;
+    position: relative;
+}
+
+#cont{
+    top: 30px;
+    left: 800px;
+    width: 400px;
+    border-style: solid;
+    border-color: gray;
+
+    position: absolute;
+}
+#codigo{
+    top: 70px;
+    left: 1100px;
+    color: red;
+    position: absolute;
+}
+#nota{
+    -webkit-box-shadow: 5px 5px 5px #888;
+    -moz-box-shadow: 5px 5px 5px #888;
+    box-shadow: 5px 5px 5px #888;
+    background-image: url('images/logo.png');
+font-size:40px;
+font-family:"Times New Roman", Times, serif;
+    left:500px;
+    top:300px;
+    position: fixed;
+}
+table.resp {
+    border-width: 1px;
+    border-spacing: 2px;
+    border-style: solid;
+    border-color: gray;
+    border-collapse: separate;
+    background-color: white;
+text-align: left;
+left:500px;
+top:230px;
+    position: fixed;
+}
+
+table.resp td {
+    border-width: 2px;
+    padding: 3px;
+    border-style: groove;
+    border-color: red;
+    background-color: rgb(250, 240, 230);
+}
