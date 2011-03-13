@@ -18,11 +18,13 @@
 yageX
 (Yet another exam generator)
 Mi competencia:<br/>
-<a href="http://www.testandcalc.com/etc/page3.asp">Easy Test Creator</a>
-<a href="http://www.classmarker.com/">Class Marker</a>
-<a href="http://www.easytestmaker.com/">Easy Test Maker</a>
-<a href="http://www.atrixware.com/site/subsites/easy_quiz_maker/pages/home.php">Easy Quiz Maker</a>
-<a href="http://ezexammaker.com/">Easy Exam Maker</a>
-<a href="http://automatic.software.informer.com/download-automatic-test-maker-easy-multiple-choice/">Muchos más</a>
+<ul>
+    <li><a href="http://www.testandcalc.com/etc/page3.asp">Easy Test Creator</a></li>
+    <li><a href="http://www.classmarker.com/">Class Marker</a></li>
+    <li><a href="http://www.easytestmaker.com/">Easy Test Maker</a></li>
+    <li><a href="http://www.atrixware.com/site/subsites/easy_quiz_maker/pages/home.php">Easy Quiz Maker</a></li>
+    <li><a href="http://ezexammaker.com/">Easy Exam Maker</a></li>
+    <li><a href="http://automatic.software.informer.com/download-automatic-test-maker-easy-multiple-choice/">Muchos más</a></li>
+</ul>
 </body>
 </html>

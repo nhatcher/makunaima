@@ -7,7 +7,7 @@
 
 </head>
 <body id="home">
-    <ul id="mainNav">
+   <ul id="mainNav">
     <li><a href="index.php" id="homeLink">yageX</a></li>
     <li><a href="example/example.php" id="exampleLink">ejemplo</a></li>
     <li><a href="download.php" id="downloadLink">Download</a></li>
