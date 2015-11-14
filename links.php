@@ -19,7 +19,7 @@
   </ul> -->
 yageX
 (Yet another exam generator)
-Mi competencia:<br/>
+oooh!Mi competencia:<br/>
 <ul>
     <li><a href="http://www.testandcalc.com/etc/page3.asp">Easy Test Creator</a></li>
     <li><a href="http://www.classmarker.com/">Class Marker</a></li>
