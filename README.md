@@ -2,7 +2,7 @@ WHAT IT SHOULD BE
 =================
 Makunaima should be a computer program designed to make on-line mathematical exams the easy way.
 
-I should be one day a web application, hopefully!
+It should be one day a web application, hopefully!
 
 You will need to be login to use the application.
 
@@ -11,7 +11,7 @@ There are three types of users (A, T and S accounts).
 Administrator.
 --------------
 
-Is the guy who grants permissions, alocates space and deals with security issues and installs and mantains the whole thing.
+Is the guy who grants permissions, allocates space and deals with security issues and installs and maintains the whole thing.
 If you need some kind of security you need one of those guys.
 
 Teachers account's.
