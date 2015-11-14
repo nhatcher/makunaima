@@ -2,7 +2,7 @@ WHAT IT SHOULD BE
 =================
 Makunaima should be a computer program designed to make on-line mathematical exams the easy way.
 
-I should be then a web application.
+I should be one day a web application.
 
 You will need to be login to use the application.
 
