@@ -2,7 +2,7 @@ WHAT IT SHOULD BE
 =================
 Makunaima should be a computer program designed to make on-line mathematical exams the easy way.
 
-I should be one day a web application.
+I should be one day a web application, hopefully!
 
 You will need to be login to use the application.
 
@@ -14,7 +14,7 @@ Administrator.
 Is the guy who grants permissions, alocates space and deals with security issues and installs and mantains the whole thing.
 If you need some kind of security you need one of those guys.
 
-Teachers account's. 
+Teachers account's.
 -------------------
 
 These are created by the administrator. Each teacher can design exams.
@@ -49,10 +49,10 @@ One everything is done, the teacher will need to click to generate the exam. Thi
 The precise way in which the student application will work, I have not yet decided. Could be the same server (may be in a different port) or could be a completely different sever.
 I am kind of thinking that the best way is to have everything in the same server.
 
-Student. 
+Student.
 --------
 
-That would be the simplest one to use. Just answer the questions!. 
+That would be the simplest one to use. Just answer the questions!.
 
 Although this is the most difficult to plan. everything can work in many different ways:
 
