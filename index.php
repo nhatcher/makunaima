@@ -23,7 +23,7 @@
 Bienvenidos a la página central de \yagex. Un programa libre y gratuíto que sirve para generar exámenes de selección simple de forma rápida y eficiente.<br/>
 La idea de \yagex es proveer a las universidades y los centros de estudio con una forma sencilla y gratuíta de realizar exámenes para internet de selección simple que incluyan fórmulas y gráficas.
 \yagex te pide una serie de preguntas de selección simple con sus opciones y una lista de estudiantes.
-Con eso y unas opciones \yagex genera una página web para que los alumnos puedan hacer sus exámenes "on-line" junto con un documento "pdf" para que el profesor pueda disponer de una copia impresa de lo que ve el estudiante.
+Con eso y unas opciones \yagex genera una página web para que los alumnos puedan hacer sus exámenes "on-line" junto con un documento "pdf" para que el professor pueda disponer de una copia impresa de lo que ve el estudiante.
 Las preguntas y las opciones se encuentran en diferente orden para cada estudiante, para hacer un poco más dificil que dos estudiantes se copien uno del otro.
 Los enunciados estan creados en latex y se ven de la misma manera en todo navegador.
 </body>

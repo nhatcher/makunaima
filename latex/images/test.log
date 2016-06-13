@@ -311,7 +311,7 @@ File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: dvips.def on input line 91.
 (/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+File: dvips.def 1999/02/16 v3.0i Driver-dependent file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
@@ -334,7 +334,7 @@ Package srcltx Info: Expanded filename `dvipsnam.def' to `dvipsnam.def.tex' on
 input line 133.
 :<+ dvipsnam.def.tex
 (/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def
-File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependent file (DPC,SPQR)
 )
 :<-
 ) (./test.aux)

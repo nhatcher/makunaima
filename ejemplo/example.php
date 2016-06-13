@@ -6,7 +6,7 @@ if( isset($_POST['pass'])) $clave=$_POST['pass']; else $clave="";
 $nombre=$_SESSION['nombre'];
 $carnet=$_SESSION['carnet'];
 $seccion=$_SESSION['seccion'];
-$profesor=$_SESSION['profesor'];
+$professor=$_SESSION['professor'];
 if(isset($_POST['p0'])) $p0=$_POST['p0']; else $p0='off';
 if(isset($_POST['p1'])) $p1=$_POST['p1']; else $p1='off';
 if(isset($_POST['p2'])) $p2=$_POST['p2']; else $p2='off';
@@ -73,10 +73,10 @@ document.getElementById(preg).src = "images/letra"+letter+".png";
     </div>
     <br/><br/>
         <div id="profesorlabel">
-    <img src="images/profesor.png" alt=""/>
+    <img src="images/professor.png" alt=""/>
     </div>
     <div id="profesorfield">
-    <input id="profesor" type="text" size="28.0" alt="" readonly value="<?php print($profesor);?>"/>
+    <input id="professor" type="text" size="28.0" alt="" readonly value="<?php print($professor);?>"/>
     </div>
     </div><br/>
     <div id="materia">

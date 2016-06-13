@@ -148,7 +148,7 @@ Los campos del ejemplo son:<br/>
 nombre(20)=Nombre:<br/>
 carnet(8)=Carnet:<br/>
 seccion(2)=Grupo:<br/>
-profesor(20)=Profesor:<br/>
+professor(20)=Professor:<br/>
 </div><br/>
 Aquí el nombre del alumno es un campo que contiene a lo sumo 20 carácteres, el carnet contiene 8, por ejemplo.
 El nombre del campo es muy importante porque debemos crear una base de datos con los datos de cada estudiante
