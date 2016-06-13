@@ -91,10 +91,10 @@ document.onmouseup=new Function("isdrag=false");
     </div>
     <br/><br/>
         <div id="profesorlabel">
-    <img src="images/profesor.png" alt="" class="dragme"/>
+    <img src="images/professor.png" alt="" class="dragme"/>
     </div>
     <div id="profesorfield">
-    <input id="profesor" type="text" size="28.0" alt="" readonly value=""/>
+    <input id="professor" type="text" size="28.0" alt="" readonly value=""/>
     </div>
     </div><br/>
     <div id="materia">

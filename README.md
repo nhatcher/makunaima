@@ -23,7 +23,7 @@ I imagine that a user logs in for the first time and then he is presented with a
 She can go ahead a create an exam. She would need to have all the questions prepared, with the correct answer and the value of each question.
 
 Everything is in latex, so she should know the basics, at the very least. The best preparation would be to have a latex exam at hand.
-she would summit all the images necesary and include all headers if it is not standard. She will need to specify the right choice for each question and the value. and perhaps things like negative values if the answer provided is not correct.
+she would summit all the images necessary and include all headers if it is not standard. She will need to specify the right choice for each question and the value. and perhaps things like negative values if the answer provided is not correct.
 
 The most difficult of the mandatory parts is to design the header of the on-line exam. A header will contain a set of variables and a set of fields. Each variable is just a name, like the name of the exam, the term, the teacher or other stuff that belongs to the exam itself and is not particular to the student. Could be an image or any valid latex code.
 
